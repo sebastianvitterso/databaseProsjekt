@@ -7,5 +7,5 @@ public class DatabaseManager {
 	private static final String DB_PASSWORD = "dbproj";
 	
 	static int to = 2;
-	
+
 }
