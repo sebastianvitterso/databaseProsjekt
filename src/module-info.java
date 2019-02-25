@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * @author Sebastian
+ *
+ */
+module databaseProsjekt {
+}
