@@ -1,8 +1,10 @@
 package main;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Calendar;
 
 public class ConsoleManager {
 
@@ -22,7 +24,12 @@ public class ConsoleManager {
 
     public static boolean makeTreningsøkt(){
         System.out.println("|-| Legg til treningsøkt ved å fylle ut dette skjemaer |-|");
-        String tidspunkt = getInput("Tidspunkt(YYYY-MM-DD hh:mm:ss):");
+        //String tidspunkt = getInput("Tidspunkt(YYYY-MM-DD hh:mm:ss):");
+
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat defaultF = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String tidspunkt = defaultF.format(c.getTime());
+        System.out.println(tidspunkt);
         String varighet = getInput("Varighet:");
         String form = getInput("Form:");
         String prestasjon = getInput("Prestasjon:");
@@ -74,6 +81,33 @@ public class ConsoleManager {
         return QueryManager.addØvelseIØkt(id, øvelse, kilo, repetisjoner, sett, resultat);
     }
 
+    public static void getNSisteTreningsøkter() {
+        int n = Integer.parseInt(getInput("Hvor mange treningsøkter vil du vise?"));
+        List<Map<String,String>> treningsøkter = QueryManager.getTreningsøkterMedNotat();
+        String str = "";
+        for (String v : treningsøkter.get(0).keySet()){
+            str += String.format("| %s |", v);
+        }
+        str += "\n";
+        int i = 0;
+        for (Map<String,String> map : treningsøkter) {
+            for (String v : map.values()){
+                str += String.format("| %s |", v);
+            }
+            str += "\n";
+            i++;
+            if (i == n){
+                break;
+            }
+        }
+        System.out.println(str);
+    }
+
+
+
+
+
+
     public static void printMapList(List<Map<String,String>> mapList) {
         String str = "";
         for (String v : mapList.get(0).keySet()){
@@ -94,7 +128,7 @@ public class ConsoleManager {
         /*for (String prompt : args){
             ConsoleManager.getInput(prompt);
         }*/
-        System.out.println(makeØvelse());
+        getNSisteTreningsøkter();
 
 
     }
