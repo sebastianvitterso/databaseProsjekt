@@ -20,10 +20,14 @@ public class Main {
                 case "nytt apparat":
                     ConsoleManager.makeApparat();
                     break;
+                case "øvelse i økt":
+                    ConsoleManager.makeØvelseIØkt();
+                    break;
                 case "se valgmuligheter": case "hjelp":
                     System.out.println("'slutt da'/'slutt' : Avslutter programmet \n" +
                             "'ny treningsøkt' : Legg inn ny treningsøkt\n" +
-                            "'ny øvelse' : Legg inn ny øvelse");
+                            "'ny øvelse' : Legg inn ny øvelse\n" +
+                            "'øvelse i økt' : Legg til øvelse i treningsøkt");
                     break;
             }
             /*
