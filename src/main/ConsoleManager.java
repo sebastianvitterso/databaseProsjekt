@@ -36,13 +36,35 @@ public class ConsoleManager {
         }
         return ok;
     }
+    public static boolean makeØvelse(){
+        System.out.println("|-| Legg til øvelse ved å fylle ut dette skjemaet |-|");
+        String navn = getInput("Navn:");
+        String beskrivelse = getInput("Beskrivelse:");
+        printMapList(QueryManager.getApparat());
+        String apparat_id = getInput("ApparatID:");
+        return QueryManager.addØvelse(navn, beskrivelse, apparat_id);
+    }
+
+    public static void printMapList(List<Map<String,String>> mapList) {
+        String str = "";
+        for (String v : mapList.get(0).keySet()){
+            str += String.format("| %s |", v);
+        }
+        str += "\n";
+        for (Map<String,String> map : mapList) {
+            for (String v : map.values()){
+                str += String.format("| %s |", v);
+            }
+        }
+        System.out.println(str);
+    }
 
 
     public static void main(String[] args) {
         /*for (String prompt : args){
             ConsoleManager.getInput(prompt);
         }*/
-        System.out.println(makeTreningsøkt());
+        System.out.println(makeØvelse());
 
 
     }
