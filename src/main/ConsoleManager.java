@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class ConsoleManager {
 
-    public static String latestTimestamp = "";
+    public static String latestTimestamp = "2019-02-27 19:11:30";
 
     public static String getInput(String prompt) {
         System.out.println(prompt);
@@ -47,6 +47,9 @@ public class ConsoleManager {
         String beskrivelse = getInput("Beskrivelse:");
         printMapList(QueryManager.getApparat());
         String apparat_id = getInput("ApparatID:");
+        if (apparat_id == ""){
+            apparat_id = "null";
+        }
         return QueryManager.addØvelse(navn, beskrivelse, apparat_id);
     }
     public static boolean makeApparat(){
@@ -63,12 +66,12 @@ public class ConsoleManager {
         String repetisjoner = getInput("Repetisjoner:");
         String sett = getInput("Sett:");
         String resultat = getInput("Resultat:");
-
-        String id = "";
+        String id = null;
         List<Map<String,String>> treningsøkter = QueryManager.getTreningsøktID(latestTimestamp);
         for (Map<String, String> row : treningsøkter){
             id = row.get("treningsøkt_id");
         }
+        System.out.println(id);
         return QueryManager.addØvelseIØkt(id, øvelse, kilo, repetisjoner, sett, resultat);
     }
 

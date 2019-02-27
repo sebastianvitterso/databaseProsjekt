@@ -26,7 +26,7 @@ public class QueryManager {
         return((DatabaseManager.sendUpdate(sql)) > 0);
     }
     public static boolean addØvelseIØkt(String treningsøkt_id, String øvelse_id, String kilo, String repitisjoner, String sett, String resultat){
-        String sql = String.format("INSERT INTO øvelse_i_økt VALUES('%s','%s','%s','%s','%s','%s')", treningsøkt_id, øvelse_id, kilo, repitisjoner, sett, resultat);
+        String sql = String.format("INSERT INTO øvelse_i_økt VALUES('%s','%s','%s','%s','%s','%s')", øvelse_id, treningsøkt_id, kilo, repitisjoner, sett, resultat);
         return((DatabaseManager.sendUpdate(sql)) > 0);
     }
 
