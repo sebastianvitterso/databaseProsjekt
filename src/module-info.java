@@ -6,4 +6,5 @@
  *
  */
 module databaseProsjekt {
+	requires java.sql;
 }
