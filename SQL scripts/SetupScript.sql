@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS apparat (
 CREATE TABLE IF NOT EXISTS øvelse(
 	øvelse_id INT NOT NULL AUTO_INCREMENT,
 	navn VARCHAR(100) NOT NULL,
-    apparat_id INT NOT NULL,
+    apparat_id INT,
     beskrivelse VARCHAR(500),
 	PRIMARY KEY (øvelse_id),
     CONSTRAINT øvelse_fk1
@@ -48,8 +48,10 @@ CREATE TABLE IF NOT EXISTS øvelse(
 CREATE TABLE IF NOT EXISTS øvelse_i_økt (
 	øvelse_id INT NOT NULL,
     treningsøkt_id INT NOT NULL,
-    antall_kg INT NOT NULL,
-    antall_set INT NOT NULL,
+    antall_kg INT,
+    antall_repetisjoner INT,
+    antall_set INT,
+    resultat VARCHAR(100),
     PRIMARY KEY (øvelse_id, treningsøkt_id),
     CONSTRAINT øvelse_økt_fk1
 		FOREIGN KEY (øvelse_id)
@@ -66,7 +68,6 @@ CREATE TABLE IF NOT EXISTS øvelse_i_økt (
 CREATE TABLE IF NOT EXISTS øvelse_i_øvelsegruppe (
 	øvelse_id INT NOT NULL,
     øvelsesgruppe_id INT NOT NULL,
-    resultat VARCHAR(500),
     PRIMARY KEY (øvelse_id, øvelsesgruppe_id),
     CONSTRAINT øvelse_gruppe_fk1
 		FOREIGN KEY (øvelse_id)
