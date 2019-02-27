@@ -34,6 +34,11 @@ public class QueryManager {
         return((DatabaseManager.sendUpdate(sql)) > 0);
     }
 
+    public static List<Map<String, String>> getTreningsøktID(String timestamp){
+        String sql = String.format("SELECT treningsøkt_id FROM treningsøkt WHERE timestamp = '%s'", timestamp);
+        return(DatabaseManager.sendQuery(sql));
+    }
+
     public static List<Map<String, String>> getTreningsøkterMedNotat(){
         String sql = String.format("SELECT * FROM treningsøkt NATURAL JOIN notat");
         return(DatabaseManager.sendQuery(sql));
