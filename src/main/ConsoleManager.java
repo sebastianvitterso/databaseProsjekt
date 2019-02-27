@@ -65,6 +65,11 @@ public class ConsoleManager {
         String beskrivelse = getInput("Beskrivelse:");
         return QueryManager.addApparat(navn, beskrivelse);
     }
+    public static boolean makeØvelsesGruppe(){
+        System.out.println("|-| Legg til øvelsesgruppe ved å fylle ut dette skjemaet |-|");
+        String beskrivelse = getInput("Beskrivelse:");
+        return QueryManager.addØvelsesGruppe(beskrivelse);
+    }
     public static boolean makeØvelseIØkt(){
         System.out.println("|-| Legg til øvelse i økt ved å fylle ut dette skjemaet |-|");
         printMapList(QueryManager.getØvelse());
@@ -104,6 +109,12 @@ public class ConsoleManager {
     }
 
 
+    public static void getResultat(){
+        String nedre = getInput("Nedre tidsgrense:");
+        String øvre = getInput("Øvre tidsgrense:");
+        printMapList(QueryManager.getResultat(nedre,øvre));
+    }
+
 
 
 
@@ -128,7 +139,7 @@ public class ConsoleManager {
         /*for (String prompt : args){
             ConsoleManager.getInput(prompt);
         }*/
-        getNSisteTreningsøkter();
+        getResultat();
 
 
     }

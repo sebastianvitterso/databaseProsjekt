@@ -34,7 +34,7 @@ public class QueryManager {
         return((DatabaseManager.sendUpdate(sql)) > 0);
     }
 
-    public static boolean addØvelsesGruppe(String øvelsegruppe_id, String beskrivelse){
+    public static boolean addØvelsesGruppe(String beskrivelse){
         String sql = String.format("INSERT INTO øvelse_i_økt VALUES(NULL,'%s')", beskrivelse);
         return((DatabaseManager.sendUpdate(sql)) > 0);
     }
@@ -60,7 +60,7 @@ public class QueryManager {
     }
 
     public static List<Map<String, String>> getResultat (String tidspunkt_nedre, String tidspunkt_ovre){
-        String sql = String.format("SELECT resultat, kilo, repitisjoner, sett, tidspunkt FROM øvelse_i_økt NATURAL JOIN treningsøkt WHERE '%s' < tidspunkt AND '%s' > tidspunkt ORDER BY tidspunkt", tidspunkt_nedre, tidspunkt_ovre);
+        String sql = String.format("SELECT resultat, antall_kg, antall_repetisjoner, antall_set, tidspunkt FROM øvelse_i_økt NATURAL JOIN treningsøkt WHERE '%s' < tidspunkt AND '%s' > tidspunkt ORDER BY tidspunkt", tidspunkt_nedre, tidspunkt_ovre);
         return(DatabaseManager.sendQuery(sql));
     }
 
