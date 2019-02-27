@@ -18,7 +18,7 @@ public class QueryManager {
     }
     public static boolean addNotat(String tekst){
         String sql = String.format("INSERT INTO notat VALUES(%s,'%s')", "NULL", tekst);
-        DatabaseManager.sendUpdate(sql);
+        return((DatabaseManager.sendUpdate(sql)) > 0);
     }
     public static boolean addApparat(String navn, String beskrivelse){
         String sql = String.format("INSERT INTO apparat VALUES(NULL,'%s', '%s')", navn, beskrivelse);
@@ -43,7 +43,7 @@ public class QueryManager {
 
     // Lage øvelsegrupper og finne øvelser som er i samme gruppe
 
-    
+
 
 
 
