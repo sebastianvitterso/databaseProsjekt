@@ -90,7 +90,7 @@ public class QueryManager {
             Map<String,String> tmp1 = null;
             for (Map<String, String> element : tmp){
                 for (Map<String, String> ferdig1 : ferdig){
-                    if (!(ferdig1.get("øvelsesgruppe_id").equals(element.get("øvelsesgruppe_id")))) {
+                    if (!(ferdig1.get("øvelse_id").equals(element.get("øvelse_id")))) {
                         ok = false;
 
                     }
