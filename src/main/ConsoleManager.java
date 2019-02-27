@@ -37,6 +37,7 @@ public class ConsoleManager {
         boolean ok = QueryManager.addTreningsøkt(tidspunkt,varighet,form,prestasjon);
         if (ok){
             latestTimestamp = tidspunkt;
+            prestasjon();
         }
         if (notat != "" && ok){
             String id = "";
@@ -117,6 +118,15 @@ public class ConsoleManager {
         System.out.println(str);
     }
 
+    public static boolean prestasjon(){
+        List<Map<String,String>> treningsøkter = QueryManager.getTreningsøkterMedNotat();
+        if (treningsøkter.size() % 2 == 0){
+            System.out.println("Ta deg en sjokolade, du har vært flink til å trene.");
+            return true;
+        }
+        return false;
+    }
+
 
     public static void getResultat(){
         String nedre = getInput("Nedre tidsgrense:");
@@ -153,8 +163,7 @@ public class ConsoleManager {
         /*for (String prompt : args){
             ConsoleManager.getInput(prompt);
         }*/
-        makeØvelseIØvelsesGruppe();
-        getLike();
+        makeTreningsøkt();
 
     }
 }
