@@ -13,7 +13,7 @@ public class ConsoleManager {
         String input = "";
         try {
         Scanner scanner = new Scanner(System.in);
-        input = scanner.nextLine();
+        input = scanner.nextLine().toLowerCase();
         } catch(Exception e) {
             e.printStackTrace();
         }
