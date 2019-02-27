@@ -7,11 +7,24 @@ public class Main {
         boolean finished = false;
         while (!finished) {
             String input = ConsoleManager.getInput("Hei, hva ønsker du å gjøre?").toLowerCase();
+            switch (input){
+                case "slutt da": case "slutt":
+                    finished = true;
+                    break;
+                case "ny treningsøkt":
+                    ConsoleManager.makeTreningsøkt();
+                    break;
+                case "se valgmuligheter":
+                    System.out.println("'slutt da'/'slutt' : Avslutter programmet \n" +
+                            "'ny treningsøkt' : Legg inn ny treningsøkt\n ");
+            }
+            /*
             if(input.equals("slutt da") || input.equals("slutt")) {
                 finished = true;
             } else if (input.equals("ny treningsøkt")){
                 ConsoleManager.makeTreningsøkt();
             }
+            */
         }
     }
 }
