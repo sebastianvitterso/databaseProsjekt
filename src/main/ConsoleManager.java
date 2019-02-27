@@ -19,6 +19,9 @@ public class ConsoleManager {
 
 
     public static void main(String[] args) {
-        ConsoleManager.getInput("Heihei, vil du legge til en øvelse?");
+        for (String prompt : args){
+            ConsoleManager.getInput(prompt);
+        }
+
     }
 }
