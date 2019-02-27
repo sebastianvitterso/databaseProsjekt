@@ -82,6 +82,7 @@ public class ConsoleManager {
             for (String v : map.values()){
                 str += String.format("| %s |", v);
             }
+            str += "\n";
         }
         System.out.println(str);
     }
@@ -91,7 +92,7 @@ public class ConsoleManager {
         /*for (String prompt : args){
             ConsoleManager.getInput(prompt);
         }*/
-        System.out.println(makeØvelse());
+        System.out.println(makeØvelseIØkt());
 
 
     }
