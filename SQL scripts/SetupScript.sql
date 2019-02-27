@@ -33,68 +33,53 @@ CREATE TABLE IF NOT EXISTS apparat (
 	PRIMARY KEY (apparat_id)
 );
 
-CREATE TABLE IF NOT EXISTS øvelse_med_apparat (
+CREATE TABLE IF NOT EXISTS øvelse(
+	øvelse_id INT NOT NULL,
 	navn VARCHAR(100) NOT NULL,
     apparat_id INT NOT NULL,
-    øvelsesgruppe_id INT,
-	PRIMARY KEY (navn),
+    beskrivelse VARCHAR(500),
+	PRIMARY KEY (øvelse_id),
     CONSTRAINT øvelse_fk1
 		FOREIGN KEY (apparat_id)
 		REFERENCES apparat (apparat_id)
 		ON DELETE NO ACTION
-		ON UPDATE CASCADE,
-    CONSTRAINT øvelse_fk2
-		FOREIGN KEY (øvelsesgruppe_id)
-		REFERENCES øvelsesgruppe (øvelsesgruppe_id)
-		ON DELETE NO ACTION
 		ON UPDATE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS øvelse_uten_apparat (
-	navn VARCHAR(100) NOT NULL,
-    beskrivelse VARCHAR(200) NOT NULL,
-    øvelsesgruppe_id INT,
-	PRIMARY KEY (navn),
-    CONSTRAINT øvelse_u_fk1
-		FOREIGN KEY (øvelsesgruppe_id)
-		REFERENCES øvelsesgruppe (øvelsesgruppe_id)
-		ON DELETE NO ACTION
-		ON UPDATE CASCADE
-);
-
-CREATE TABLE IF NOT EXISTS øvelse_med_apparat_i_økt (
-	øvelse_navn VARCHAR(100) NOT NULL,
+CREATE TABLE IF NOT EXISTS øvelse_i_økt (
+	øvelse_id INT NOT NULL,
     treningsøkt_id INT NOT NULL,
     antall_kg INT NOT NULL,
     antall_set INT NOT NULL,
-    PRIMARY KEY (øvelse_navn, treningsøkt_id),
-    CONSTRAINT øvelse_apparat_fk1
-		FOREIGN KEY (øvelse_navn)
-        REFERENCES øvelse_med_apparat (navn)
+    PRIMARY KEY (øvelse_id, treningsøkt_id),
+    CONSTRAINT øvelse_økt_fk1
+		FOREIGN KEY (øvelse_id)
+        REFERENCES øvelse (øvelse_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
-	CONSTRAINT øvelse_apparat_fk2
+	CONSTRAINT øvelse_økt_fk2
 		FOREIGN KEY (treningsøkt_id)
         REFERENCES treningsøkt (treningsøkt_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS øvelse_uten_apparat_i_økt (
-	øvelse_navn VARCHAR(100) NOT NULL,
-    treningsøkt_id INT NOT NULL,
+CREATE TABLE IF NOT EXISTS øvelse_i_øvelsegruppe (
+	øvelse_id INT NOT NULL,
+    øvelsesgruppe_id INT NOT NULL,
     resultat VARCHAR(500),
-    PRIMARY KEY (øvelse_navn, treningsøkt_id),
-    CONSTRAINT øvelse_økt2_fk1
-		FOREIGN KEY (øvelse_navn)
-        REFERENCES øvelse_uten_apparat (navn)
+    PRIMARY KEY (øvelse_id, øvelsesgruppe_id),
+    CONSTRAINT øvelse_gruppe_fk1
+		FOREIGN KEY (øvelse_id)
+        REFERENCES øvelse (øvelse_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
-	CONSTRAINT øvelse_økt2_fk2
-		FOREIGN KEY (treningsøkt_id)
-        REFERENCES treningsøkt (treningsøkt_id)
+	CONSTRAINT øvelse_gruppe_fk2
+		FOREIGN KEY (øvelsesgruppe_id)
+        REFERENCES øvelsesgruppe (øvelsesgruppe_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
+
 
 
