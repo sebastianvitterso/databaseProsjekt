@@ -1,8 +1,7 @@
 package main;
 
 public class Main {
-
-    public static void main(String[] args) {
+	public static void main(String[] args) {
         //TODO: Start hva som skal vises i console
         boolean finished = false;
         while (!finished) {
@@ -12,19 +11,19 @@ public class Main {
                 case "slutt da": case "slutt":
                     finished = true;
                     break;
-                case "ny treningsøkt":
+                case "ny treningsokt":
                     ConsoleManager.makeTreningsøkt();
                     break;
-                case "ny øvelse":
+                case "ny ovelse":
                     ConsoleManager.makeØvelse();
                     break;
                 case "nytt apparat":
                     ConsoleManager.makeApparat();
                     break;
-                case "øvelse i økt":
+                case "ovelse i okt":
                     ConsoleManager.makeØvelseIØkt();
                     break;
-                case "hent siste økter":
+                case "hent siste okter":
                     ConsoleManager.getNSisteTreningsøkter();
                     break;
                 case "vis resultater":
@@ -33,23 +32,23 @@ public class Main {
                 case "vis liknende":
                 	ConsoleManager.getLike();
                 	break;
-                case "ny øvelsesgruppe":
+                case "ny ovelsesgruppe":
                 	ConsoleManager.makeØvelsesGruppe();
                 	break;
-                case "legg øvelse i gruppe":
+                case "legg ovelse i gruppe":
                 	ConsoleManager.makeØvelseIØvelsesGruppe();
                 	break;
                 case "se valgmuligheter": case "hjelp":
                     System.out.println("Mulige kommandoer:\n" +
                             "'slutt da'/'slutt' : Avslutter programmet \n" +
-                            "'ny treningsøkt' : Legg inn ny treningsøkt\n" +
-                            "'ny øvelse' : Legg inn ny øvelse\n" +
+                            "'ny treningsokt' : Legg inn ny treningsøkt\n" +
+                            "'ny ovelse' : Legg inn ny øvelse\n" +
                             "'nytt apparat' : Legg til nytt apparat\n" +
-                            "'øvelse i økt' : Legg til øvelse i treningsøkt\n" +
+                            "'ovelse i okt' : Legg til øvelse i treningsøkt\n" +
                             "'hent siste økter' : Vis siste n treningsøkter\n" +
                             "'vis resultater' : Vis resultater i gitt intervall\n" +
-                            "'vis liknende øvelser' : Vis øvelser som likner på gitt øvelse\n" +
-                            "'ny øvelsesgruppe' : Lag ny øvelsesgruppe\n" +
+                            "'vis liknende ovelser' : Vis øvelser som likner på gitt øvelse\n" +
+                            "'ny ovelsesgruppe' : Lag ny øvelsesgruppe\n" +
                             "'legg øvelse i gruppe' : Koble øvelse mot gruppe\n" +
                             "\n_____________________________________________\n");
                     break;
