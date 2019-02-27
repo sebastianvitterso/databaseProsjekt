@@ -163,7 +163,7 @@ public class ConsoleManager {
         /*for (String prompt : args){
             ConsoleManager.getInput(prompt);
         }*/
-        makeTreningsøkt();
+        getLike();
 
     }
 }
