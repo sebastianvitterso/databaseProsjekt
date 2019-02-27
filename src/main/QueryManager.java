@@ -55,7 +55,7 @@ public class QueryManager {
     }
 
     public static List<Map<String, String>> getTreningsøkterMedNotat(){
-        String sql = String.format("SELECT * FROM treningsøkt NATURAL JOIN notat ORDER BY tidspunkt DESC");
+        String sql = String.format("SELECT tidspunkt, varighet, form, prestasjon, tekst FROM treningsøkt NATURAL JOIN notat ORDER BY tidspunkt DESC");
         return(DatabaseManager.sendQuery(sql));
     }
 
