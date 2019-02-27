@@ -59,8 +59,8 @@ public class QueryManager {
         return(DatabaseManager.sendQuery(sql));
     }
 
-    public static List<Map<String, String>> getResulat (String tidspunkt_input){
-        String sql = String.format("SELECT resultat, kilo, repitisjoner, sett, tidspunkt FROM øvelse_i_økt NATURAL JOIN treningsøkt WHERE '/s' > tidspunkt ORDER BY tidspunkt", tidspunkt_input);
+    public static List<Map<String, String>> getResultat (String tidspunkt_nedre, String tidspunkt_ovre){
+        String sql = String.format("SELECT resultat, kilo, repitisjoner, sett, tidspunkt FROM øvelse_i_økt NATURAL JOIN treningsøkt WHERE '%s' < tidspunkt AND '%s' > '%s' > tidspunkt ORDER BY tidspunkt", tidspunkt_nedre, tidspunkt_ovre);
         return(DatabaseManager.sendQuery(sql));
     }
 
