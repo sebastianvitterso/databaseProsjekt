@@ -12,6 +12,10 @@ public class QueryManager {
         String sql = String.format("INSERT INTO øvelse VALUES(NULL,'%s','%s','%s')", navn, apparat_id, beskrivelse);
         return((DatabaseManager.sendUpdate(sql)) > 0);
     }
+    public static boolean addØvelseUtenApparat(String navn, String beskrivelse){
+        String sql = String.format("INSERT INTO øvelse VALUES(NULL,'%s',NULL,'%s')", navn, beskrivelse);
+        return((DatabaseManager.sendUpdate(sql)) > 0);
+    }
 
     public static boolean addTreningsøkt(String tidspunkt, String varighet, String form, String prestasjon){
         String sql = String.format("INSERT INTO treningsøkt VALUES(NULL,'%s','%s','%s','%s')", tidspunkt, varighet, form, prestasjon);
