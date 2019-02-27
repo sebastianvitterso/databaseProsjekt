@@ -22,6 +22,8 @@
 # IntelliJ #
 *.iml
 .idea/
+*.class
+/target/
 
 # Eclipse #
 .settings/
