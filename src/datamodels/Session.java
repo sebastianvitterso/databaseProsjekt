@@ -5,16 +5,14 @@ import java.sql.Timestamp;
 
 public class Session {
 	private final int session_id;
-	private Date date;
-	private Timestamp timeStamp;
+	private Timestamp timestamp;
 	private int duration; // minutes
 	private int shape;
 	private int performance;
 	
 	public Session(int session_id, Date date, Timestamp timeStamp, int duration, int shape, int performance) {
 		this.session_id = session_id;
-		this.date = date;
-		this.timeStamp = timeStamp;
+		this.timestamp = timeStamp;
 		this.duration = duration;
 		this.shape = shape;
 		this.performance = performance;
@@ -24,20 +22,12 @@ public class Session {
 		return session_id;
 	}
 	
-	public Date getDate() {
-		return date;
+	public Timestamp getTimestamp() {
+		return timestamp;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public Timestamp getTimeStamp() {
-		return timeStamp;
-	}
-
-	public void setTimeStamp(Timestamp timeStamp) {
-		this.timeStamp = timeStamp;
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
 	}
 
 	public int getDuration() {

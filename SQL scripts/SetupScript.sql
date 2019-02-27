@@ -1,7 +1,6 @@
 CREATE TABLE IF NOT EXISTS treningsøkt (
 	treningsøkt_id INT NOT NULL AUTO_INCREMENT,
-	dato DATE NOT NULL,
-	tidspunkt TIMESTAMP NOT NULL,
+	tidspunkt DATETIME NOT NULL,
 	varighet INT NOT NULL,
 	form INT,
     prestasjon INT,
@@ -27,14 +26,14 @@ CREATE TABLE IF NOT EXISTS øvelsesgruppe (
 );
 
 CREATE TABLE IF NOT EXISTS apparat (
-	apparat_id int NOT NULL,
+	apparat_id int NOT NULL AUTO_INCREMENT,
     navn VARCHAR(100) NOT NULL,
     beskrivelse VARCHAR(200) NOT NULL,
 	PRIMARY KEY (apparat_id)
 );
 
 CREATE TABLE IF NOT EXISTS øvelse(
-	øvelse_id INT NOT NULL,
+	øvelse_id INT NOT NULL AUTO_INCREMENT,
 	navn VARCHAR(100) NOT NULL,
     apparat_id INT NOT NULL,
     beskrivelse VARCHAR(500),
