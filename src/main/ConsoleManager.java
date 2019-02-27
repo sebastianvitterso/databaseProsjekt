@@ -70,9 +70,18 @@ public class ConsoleManager {
         String beskrivelse = getInput("Beskrivelse:");
         return QueryManager.addØvelsesGruppe(beskrivelse);
     }
+    public static boolean makeØvelseIØvelsesGruppe(){
+        System.out.println("|-| Legg til øvelse i øvelsesgruppe ved å fylle ut dette skjemaet |-|");
+        printMapList(QueryManager.getØvelser());
+        String øvelse = getInput("ØvelseID:");
+        printMapList(QueryManager.getØvelsesGrupper());
+        String øvelsegruppe = getInput("ØvelseGruppeID:");
+        return QueryManager.addØvelseIØvelsesGruppe(øvelse, øvelsegruppe);
+    }
+
     public static boolean makeØvelseIØkt(){
         System.out.println("|-| Legg til øvelse i økt ved å fylle ut dette skjemaet |-|");
-        printMapList(QueryManager.getØvelse());
+        printMapList(QueryManager.getØvelser());
         String øvelse = getInput("Øvelse:");
         String kilo = getInput("Kilo:");
         String repetisjoner = getInput("Repetisjoner:");
@@ -115,6 +124,11 @@ public class ConsoleManager {
         printMapList(QueryManager.getResultat(nedre,øvre));
     }
 
+    public static void getLike() {
+        printMapList(QueryManager.getØvelser());
+        String øvelse = getInput("Øvelse:");
+        printMapList(QueryManager.getLikeØvelser(øvelse));
+    }
 
 
 
@@ -139,8 +153,8 @@ public class ConsoleManager {
         /*for (String prompt : args){
             ConsoleManager.getInput(prompt);
         }*/
-        getResultat();
-
+        makeØvelseIØvelsesGruppe();
+        getLike();
 
     }
 }

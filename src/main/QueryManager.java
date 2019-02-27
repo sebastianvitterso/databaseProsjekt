@@ -35,7 +35,12 @@ public class QueryManager {
     }
 
     public static boolean addØvelsesGruppe(String beskrivelse){
-        String sql = String.format("INSERT INTO øvelse_i_økt VALUES(NULL,'%s')", beskrivelse);
+        String sql = String.format("INSERT INTO øvelsesgruppe VALUES(NULL,'%s')", beskrivelse);
+        return((DatabaseManager.sendUpdate(sql)) > 0);
+    }
+
+    public static boolean addØvelseIØvelsesGruppe(String øvelse_id, String øvelsesgruppe_id){
+        String sql = String.format("INSERT INTO øvelse_i_øvelsegruppe VALUES('%s','%s')", øvelse_id, øvelsesgruppe_id);
         return((DatabaseManager.sendUpdate(sql)) > 0);
     }
 
@@ -49,8 +54,12 @@ public class QueryManager {
         return(DatabaseManager.sendQuery(sql));
     }
 
-    public static List<Map<String, String>> getØvelse(){
+    public static List<Map<String, String>> getØvelser(){
         String sql = String.format("SELECT * FROM øvelse");
+        return(DatabaseManager.sendQuery(sql));
+    }
+    public static List<Map<String, String>> getØvelsesGrupper(){
+        String sql = String.format("SELECT * FROM øvelsesgruppe");
         return(DatabaseManager.sendQuery(sql));
     }
 
@@ -67,10 +76,11 @@ public class QueryManager {
     public static List<Map<String, String>> getLikeØvelser (String øvelse_id_input){
 
 
-        String sql = String.format("SELECT øvelsegrupper_id FROM øvelse_i_øvelsegruppe NATURAL JOIN øvelse WHERE øvelse_id = '%s' ", øvelse_id_input);
+        String sql = String.format("SELECT øvelsegruppe_id FROM øvelse_i_øvelsegruppe NATURAL JOIN øvelse WHERE øvelse_id = '%s' ", øvelse_id_input);
         List<Map<String, String>> liste = DatabaseManager.sendQuery(sql);
 
        Map<String, String> map = liste.get(0);
+
 
        String id = map.get("øvelsesgruppe_id");
 
