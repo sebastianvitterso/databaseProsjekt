@@ -47,7 +47,7 @@ public class ConsoleManager {
         String beskrivelse = getInput("Beskrivelse:");
         printMapList(QueryManager.getApparat());
         String apparat_id = getInput("ApparatID:");
-        if (apparat_id == ""){
+        if (apparat_id.equals("")){
             return QueryManager.addØvelseUtenApparat(navn, beskrivelse);
         }
         return QueryManager.addØvelse(navn, beskrivelse, apparat_id);
