@@ -30,6 +30,7 @@ public class Main {
                             "'ny treningsøkt' : Legg inn ny treningsøkt\n" +
                             "'ny øvelse' : Legg inn ny øvelse\n" +
                             "'øvelse i økt' : Legg til øvelse i treningsøkt" +
+                            "'nytt apparat' : Legg til nytt apparat" +
                             "\n_____________________________________________\n");
                     break;
             }
