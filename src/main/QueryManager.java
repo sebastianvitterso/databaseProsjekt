@@ -13,7 +13,7 @@ public class QueryManager {
         return((DatabaseManager.sendUpdate(sql)) > 0);
     }
     public static boolean addTreningsøkt(String tidspunkt, String varighet, String form, String prestasjon){
-        String sql = String.format("INSERT INTO treningsøkt VALUES(%s,'%s','%s','%s','%s','%s')", "NULL", tidspunkt, varighet, form, prestasjon);
+        String sql = String.format("INSERT INTO treningsøkt VALUES(%s,'%s','%s','%s','%s')", "NULL", tidspunkt, varighet, form, prestasjon);
         return((DatabaseManager.sendUpdate(sql)) > 0);
     }
     public static boolean addNotat(String tekst, String treningsøkt_id){
@@ -58,7 +58,8 @@ public class QueryManager {
 
 
         String sql = String.format("SELECT øvelsegrupper_id FROM øvelse_i_øvelsegruppe NATURAL JOIN øvelse WHERE øvelse_id = '%s' ", øvelse_id_input);
-        return(DatabaseManager.sendQuery(sql));
+        List<Map<String, String>> liste = DatabaseManager.sendQuery(sql);
+
 
 
     }
