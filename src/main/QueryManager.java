@@ -76,7 +76,7 @@ public class QueryManager {
     public static List<Map<String, String>> getLikeØvelser (String øvelse_id_input){
 
 
-        String sql = String.format("SELECT øvelsegruppe_id FROM øvelse_i_øvelsegruppe NATURAL JOIN øvelse WHERE øvelse_id = '%s' ", øvelse_id_input);
+        String sql = String.format("SELECT øvelsesgruppe_id FROM øvelse_i_øvelsegruppe NATURAL JOIN øvelse WHERE øvelse_id = '%s' ", øvelse_id_input);
         List<Map<String, String>> liste = DatabaseManager.sendQuery(sql);
 
        Map<String, String> map = liste.get(0);
@@ -84,7 +84,7 @@ public class QueryManager {
 
        String id = map.get("øvelsesgruppe_id");
 
-        String sql2 = String.format("SELECT * FROM øvelse_i_øvelsegruppe NATURAL JOIN øvelse WHERE øvelsegruppe_id = '%s'", id);
+        String sql2 = String.format("SELECT * FROM øvelse_i_øvelsegruppe NATURAL JOIN øvelse WHERE øvelsesgruppe_id = '%s'", id);
 
         return(DatabaseManager.sendQuery(sql2));
     }
