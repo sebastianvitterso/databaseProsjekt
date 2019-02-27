@@ -1,8 +1,10 @@
 package main;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Calendar;
 
 public class ConsoleManager {
 
@@ -22,7 +24,12 @@ public class ConsoleManager {
 
     public static boolean makeTreningsøkt(){
         System.out.println("|-| Legg til treningsøkt ved å fylle ut dette skjemaer |-|");
-        String tidspunkt = getInput("Tidspunkt(YYYY-MM-DD hh:mm:ss):");
+        //String tidspunkt = getInput("Tidspunkt(YYYY-MM-DD hh:mm:ss):");
+
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat defaultF = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String tidspunkt = defaultF.format(c.getTime());
+        System.out.println(tidspunkt);
         String varighet = getInput("Varighet:");
         String form = getInput("Form:");
         String prestasjon = getInput("Prestasjon:");
@@ -58,9 +65,23 @@ public class ConsoleManager {
         String beskrivelse = getInput("Beskrivelse:");
         return QueryManager.addApparat(navn, beskrivelse);
     }
+    public static boolean makeØvelsesGruppe(){
+        System.out.println("|-| Legg til øvelsesgruppe ved å fylle ut dette skjemaet |-|");
+        String beskrivelse = getInput("Beskrivelse:");
+        return QueryManager.addØvelsesGruppe(beskrivelse);
+    }
+    public static boolean makeØvelseIØvelsesGruppe(){
+        System.out.println("|-| Legg til øvelse i øvelsesgruppe ved å fylle ut dette skjemaet |-|");
+        printMapList(QueryManager.getØvelser());
+        String øvelse = getInput("ØvelseID:");
+        printMapList(QueryManager.getØvelsesGrupper());
+        String øvelsegruppe = getInput("ØvelseGruppeID:");
+        return QueryManager.addØvelseIØvelsesGruppe(øvelse, øvelsegruppe);
+    }
+
     public static boolean makeØvelseIØkt(){
         System.out.println("|-| Legg til øvelse i økt ved å fylle ut dette skjemaet |-|");
-        printMapList(QueryManager.getØvelse());
+        printMapList(QueryManager.getØvelser());
         String øvelse = getInput("Øvelse:");
         String kilo = getInput("Kilo:");
         String repetisjoner = getInput("Repetisjoner:");
@@ -73,6 +94,44 @@ public class ConsoleManager {
         }
         return QueryManager.addØvelseIØkt(id, øvelse, kilo, repetisjoner, sett, resultat);
     }
+
+    public static void getNSisteTreningsøkter() {
+        int n = Integer.parseInt(getInput("Hvor mange treningsøkter vil du vise?"));
+        List<Map<String,String>> treningsøkter = QueryManager.getTreningsøkterMedNotat();
+        String str = "";
+        for (String v : treningsøkter.get(0).keySet()){
+            str += String.format("| %s |", v);
+        }
+        str += "\n";
+        int i = 0;
+        for (Map<String,String> map : treningsøkter) {
+            for (String v : map.values()){
+                str += String.format("| %s |", v);
+            }
+            str += "\n";
+            i++;
+            if (i == n){
+                break;
+            }
+        }
+        System.out.println(str);
+    }
+
+
+    public static void getResultat(){
+        String nedre = getInput("Nedre tidsgrense:");
+        String øvre = getInput("Øvre tidsgrense:");
+        printMapList(QueryManager.getResultat(nedre,øvre));
+    }
+
+    public static void getLike() {
+        printMapList(QueryManager.getØvelser());
+        String øvelse = getInput("Øvelse:");
+        printMapList(QueryManager.getLikeØvelser(øvelse));
+    }
+
+
+
 
     public static void printMapList(List<Map<String,String>> mapList) {
         String str = "";
@@ -94,8 +153,8 @@ public class ConsoleManager {
         /*for (String prompt : args){
             ConsoleManager.getInput(prompt);
         }*/
-        System.out.println(makeØvelse());
-
+        makeØvelseIØvelsesGruppe();
+        getLike();
 
     }
 }

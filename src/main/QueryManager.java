@@ -34,8 +34,13 @@ public class QueryManager {
         return((DatabaseManager.sendUpdate(sql)) > 0);
     }
 
-    public static boolean addØvelsesGruppe(String øvelsegruppe_id, String beskrivelse){
-        String sql = String.format("INSERT INTO øvelse_i_økt VALUES(NULL,'%s')", beskrivelse);
+    public static boolean addØvelsesGruppe(String beskrivelse){
+        String sql = String.format("INSERT INTO øvelsesgruppe VALUES(NULL,'%s')", beskrivelse);
+        return((DatabaseManager.sendUpdate(sql)) > 0);
+    }
+
+    public static boolean addØvelseIØvelsesGruppe(String øvelse_id, String øvelsesgruppe_id){
+        String sql = String.format("INSERT INTO øvelse_i_øvelsegruppe VALUES('%s','%s')", øvelse_id, øvelsesgruppe_id);
         return((DatabaseManager.sendUpdate(sql)) > 0);
     }
 
@@ -49,32 +54,37 @@ public class QueryManager {
         return(DatabaseManager.sendQuery(sql));
     }
 
-    public static List<Map<String, String>> getØvelse(){
+    public static List<Map<String, String>> getØvelser(){
         String sql = String.format("SELECT * FROM øvelse");
+        return(DatabaseManager.sendQuery(sql));
+    }
+    public static List<Map<String, String>> getØvelsesGrupper(){
+        String sql = String.format("SELECT * FROM øvelsesgruppe");
         return(DatabaseManager.sendQuery(sql));
     }
 
     public static List<Map<String, String>> getTreningsøkterMedNotat(){
-        String sql = String.format("SELECT * FROM treningsøkt NATURAL JOIN notat");
+        String sql = String.format("SELECT tidspunkt, varighet, form, prestasjon, tekst FROM treningsøkt NATURAL JOIN notat ORDER BY tidspunkt DESC");
         return(DatabaseManager.sendQuery(sql));
     }
 
-    public static List<Map<String, String>> getResulat (String tidspunkt_input){
-        String sql = String.format("SELECT resultat, kilo, repitisjoner, sett, tidspunkt FROM øvelse_i_økt NATURAL JOIN treningsøkt WHERE '/s' > tidspunkt ORDER BY tidspunkt", tidspunkt_input);
+    public static List<Map<String, String>> getResultat (String tidspunkt_nedre, String tidspunkt_ovre){
+        String sql = String.format("SELECT resultat, antall_kg, antall_repetisjoner, antall_set, tidspunkt FROM øvelse_i_økt NATURAL JOIN treningsøkt WHERE '%s' < tidspunkt AND '%s' > tidspunkt ORDER BY tidspunkt", tidspunkt_nedre, tidspunkt_ovre);
         return(DatabaseManager.sendQuery(sql));
     }
 
     public static List<Map<String, String>> getLikeØvelser (String øvelse_id_input){
 
 
-        String sql = String.format("SELECT øvelsegrupper_id FROM øvelse_i_øvelsegruppe NATURAL JOIN øvelse WHERE øvelse_id = '%s' ", øvelse_id_input);
+        String sql = String.format("SELECT øvelsesgruppe_id FROM øvelse_i_øvelsegruppe NATURAL JOIN øvelse WHERE øvelse_id = '%s' ", øvelse_id_input);
         List<Map<String, String>> liste = DatabaseManager.sendQuery(sql);
 
        Map<String, String> map = liste.get(0);
 
+
        String id = map.get("øvelsesgruppe_id");
 
-        String sql2 = String.format("SELECT * FROM øvelse_i_øvelsegruppe NATURAL JOIN øvelse WHERE øvelsegruppe_id = '%s'", id);
+        String sql2 = String.format("SELECT * FROM øvelse_i_øvelsegruppe NATURAL JOIN øvelse WHERE øvelsesgruppe_id = '%s'", id);
 
         return(DatabaseManager.sendQuery(sql2));
     }
