@@ -29,8 +29,8 @@ public class Main {
                             "'slutt da'/'slutt' : Avslutter programmet \n" +
                             "'ny treningsøkt' : Legg inn ny treningsøkt\n" +
                             "'ny øvelse' : Legg inn ny øvelse\n" +
-                            "'øvelse i økt' : Legg til øvelse i treningsøkt" +
                             "'nytt apparat' : Legg til nytt apparat" +
+                            "'øvelse i økt' : Legg til øvelse i treningsøkt" +
                             "\n_____________________________________________\n");
                     break;
             }
