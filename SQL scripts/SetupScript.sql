@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS treningsøkt (
 	treningsøkt_id INT NOT NULL AUTO_INCREMENT,
-	tidspunkt DATETIME NOT NULL,
+	tidspunkt TIMESTAMP NOT NULL,
 	varighet INT NOT NULL,
 	form INT,
     prestasjon INT,
