@@ -12,7 +12,7 @@ public class QueryManager {
         String sql = String.format("INSERT INTO øvelse VALUES(%s,'%s','%s','%s')", "NULL", navn, apparat_id, beskrivelse);
         return((DatabaseManager.sendUpdate(sql)) > 0);
     }
-    
+
 
     public static boolean addTreningsøkt(String tidspunkt, String varighet, String form, String prestasjon){
         String sql = String.format("INSERT INTO treningsøkt VALUES(%s,'%s','%s','%s','%s')", "NULL", tidspunkt, varighet, form, prestasjon);
@@ -43,6 +43,11 @@ public class QueryManager {
 
     public static List<Map<String, String>> getApparat(){
         String sql = String.format("SELECT * FROM apparat");
+        return(DatabaseManager.sendQuery(sql));
+    }
+
+    public static List<Map<String, String>> getØvelse(){
+        String sql = String.format("SELECT * FROM øvelse");
         return(DatabaseManager.sendQuery(sql));
     }
 
