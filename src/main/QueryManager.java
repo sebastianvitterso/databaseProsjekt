@@ -34,8 +34,8 @@ public class QueryManager {
         return((DatabaseManager.sendUpdate(sql)) > 0);
     }
 
-    public static List<Map<String, String>> getTreningsøktID(String timespunkt){
-        String sql = String.format("SELECT treningsøkt_id FROM treningsøkt WHERE timespunkt = '%s'", timespunkt);
+    public static List<Map<String, String>> getTreningsøktID(String tidsspunkt){
+        String sql = String.format("SELECT treningsøkt_id FROM treningsøkt WHERE tidsspunkt = '%s'", tidsspunkt);
         return(DatabaseManager.sendQuery(sql));
     }
 
