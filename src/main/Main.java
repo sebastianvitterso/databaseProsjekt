@@ -17,10 +17,14 @@ public class Main {
                 case "ny øvelse":
                     ConsoleManager.makeØvelse();
                     break;
-                case "se valgmuligheter":
+                case "nytt apparat":
+                    ConsoleManager.makeApparat();
+                    break;
+                case "se valgmuligheter": case "hjelp";
                     System.out.println("'slutt da'/'slutt' : Avslutter programmet \n" +
                             "'ny treningsøkt' : Legg inn ny treningsøkt\n" +
                             "'ny øvelse' : Legg inn ny øvelse");
+                    break;
             }
             /*
             if(input.equals("slutt da") || input.equals("slutt")) {
