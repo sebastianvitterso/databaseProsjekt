@@ -86,12 +86,20 @@ public class QueryManager {
             String sql2 = String.format("SELECT * FROM øvelse_i_øvelsegruppe NATURAL JOIN øvelse WHERE øvelsesgruppe_id = '%s'", id);
             //DatabaseManager.sendQuery(sql2);
             List<Map<String, String>> tmp = DatabaseManager.sendQuery(sql2);
-
+            boolean ok = true;
+            Map<String,String> tmp1 = null;
             for (Map<String, String> element : tmp){
-                if (!(ferdig.contains(element))) {
+                for (Map<String, String> ferdig1 : ferdig){
+                    if ((ferdig1.get("øvelsesgruppe_id").equals(element.get("øvelsesgruppe_id")))) {
+                        ok = false;
+
+                    }
+                }
+                if (ok) {
                     ferdig.add(element);
                 }
             }
+
 
         }
 
