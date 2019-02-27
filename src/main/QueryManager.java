@@ -9,17 +9,16 @@ import java.util.Map;
 public class QueryManager {
 
     public static boolean addØvelse(String navn, String beskrivelse, String apparat_id){
-        String sql = String.format("INSERT INTO øvelse VALUES(%s,'%s','%s','%s')", "NULL", navn, apparat_id, beskrivelse);
+        String sql = String.format("INSERT INTO øvelse VALUES(NULL,'%s','%s','%s')", navn, apparat_id, beskrivelse);
         return((DatabaseManager.sendUpdate(sql)) > 0);
     }
 
-
     public static boolean addTreningsøkt(String tidspunkt, String varighet, String form, String prestasjon){
-        String sql = String.format("INSERT INTO treningsøkt VALUES(%s,'%s','%s','%s','%s')", "NULL", tidspunkt, varighet, form, prestasjon);
+        String sql = String.format("INSERT INTO treningsøkt VALUES(NULL,'%s','%s','%s','%s')", tidspunkt, varighet, form, prestasjon);
         return((DatabaseManager.sendUpdate(sql)) > 0);
     }
     public static boolean addNotat(String tekst, String treningsøkt_id){
-        String sql = String.format("INSERT INTO notat VALUES(%s,'%s', '%s')", "NULL", treningsøkt_id, tekst);
+        String sql = String.format("INSERT INTO notat VALUES(NULL,'%s', '%s')", treningsøkt_id, tekst);
         return((DatabaseManager.sendUpdate(sql)) > 0);
     }
     public static boolean addApparat(String navn, String beskrivelse){
@@ -32,7 +31,7 @@ public class QueryManager {
     }
 
     public static boolean addØvelsesGruppe(String øvelsegruppe_id, String beskrivelse){
-        String sql = String.format("INSERT INTO øvelse_i_økt VALUES('%s','%s')", "NULL", beskrivelse);
+        String sql = String.format("INSERT INTO øvelse_i_økt VALUES(NULL,'%s')", beskrivelse);
         return((DatabaseManager.sendUpdate(sql)) > 0);
     }
 
@@ -51,21 +50,15 @@ public class QueryManager {
         return(DatabaseManager.sendQuery(sql));
     }
 
-
     public static List<Map<String, String>> getTreningsøkterMedNotat(){
         String sql = String.format("SELECT * FROM treningsøkt NATURAL JOIN notat");
         return(DatabaseManager.sendQuery(sql));
     }
-//For hver enkelt øvelse skal det være mulig å se en resultatlogg i et gitt tidsintervall
-//spesifisert av brukeren.
 
     public static List<Map<String, String>> getResulat (String tidspunkt_input){
         String sql = String.format("SELECT resultat, kilo, repitisjoner, sett, tidspunkt FROM øvelse_i_økt NATURAL JOIN treningsøkt WHERE '/s' > tidspunkt ORDER BY tidspunkt", tidspunkt_input);
         return(DatabaseManager.sendQuery(sql));
     }
-
-    // Lage øvelsegrupper og finne øvelser som er i samme gruppe
-
 
     public static List<Map<String, String>> getLikeØvelser (String øvelse_id_input){
 
@@ -82,14 +75,7 @@ public class QueryManager {
         return(DatabaseManager.sendQuery(sql2));
     }
 
-
-
-
-
     public static void main(String[] args){
-        //QueryManager qm = new QueryManager();
-        //qm.addApparat("benk","kan brukst til å løfte vekter");
-        //System.out.println("test");
     }
 
 }
