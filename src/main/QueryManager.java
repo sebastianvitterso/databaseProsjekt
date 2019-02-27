@@ -12,8 +12,8 @@ public class QueryManager {
         String sql = String.format("INSERT INTO øvelse VALUES(%s,'%s','%s','%s')", "NULL", navn, beskrivelse, apparat_id);
         return((DatabaseManager.sendUpdate(sql)) > 0);
     }
-    public static boolean addTreningsøkt(String tidspunkt, String varighet, String form, String prestasjon, String notat_id){
-        String sql = String.format("INSERT INTO treningsøkt VALUES(%s,'%s','%s','%s','%s','%s','%s')", "NULL", tidspunkt, varighet, form, prestasjon, notat_id);
+    public static boolean addTreningsøkt(String tidspunkt, String varighet, String form, String prestasjon){
+        String sql = String.format("INSERT INTO treningsøkt VALUES(%s,'%s','%s','%s','%s','%s')", "NULL", tidspunkt, varighet, form, prestasjon);
         return((DatabaseManager.sendUpdate(sql)) > 0);
     }
     public static boolean addNotat(String tekst, String treningsøkt_id){
@@ -49,10 +49,14 @@ public class QueryManager {
     // Lage øvelsegrupper og finne øvelser som er i samme gruppe
 
 
-    //public static List<Map<String, String>> getLikeGrupper (String ){
-      //  String sql = String.format("SELECT resultat, kilo, repitisjoner, sett, tidspunkt FROM øvelse_i_økt NATURAL JOIN treningsøkt WHERE '/s' > tidspunkt ORDER BY tidspunkt", tidspunkt_input);
-       // return(DatabaseManager.sendQuery(sql));
-    //}
+    public static List<Map<String, String>> getLikeØvelser (String øvelse_id_input){
+
+
+        String sql = String.format("SELECT øvelsegrupper_id FROM øvelse_i_øvelsegruppe NATURAL JOIN øvelse WHERE øvelse_id = '%s' ", øvelse_id_input);
+        return(DatabaseManager.sendQuery(sql));
+
+
+    }
 
 
 
