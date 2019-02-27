@@ -79,14 +79,16 @@ public class QueryManager {
         String sql = String.format("SELECT øvelsesgruppe_id FROM øvelse_i_øvelsegruppe NATURAL JOIN øvelse WHERE øvelse_id = '%s' ", øvelse_id_input);
         List<Map<String, String>> liste = DatabaseManager.sendQuery(sql);
 
-       Map<String, String> map = liste.get(0);
+        List<Map<String, String>> ferdig = new ArrayList<>();
 
+        for (Map<String, String> map : liste){
+            String id = map.get("øvelsesgruppe_id");
+            String sql2 = String.format("SELECT * FROM øvelse_i_øvelsegruppe NATURAL JOIN øvelse WHERE øvelsesgruppe_id = '%s'", id);
+            //DatabaseManager.sendQuery(sql2);
+            ferdig.addAll(DatabaseManager.sendQuery(sql2));
+        }
 
-       String id = map.get("øvelsesgruppe_id");
-
-        String sql2 = String.format("SELECT * FROM øvelse_i_øvelsegruppe NATURAL JOIN øvelse WHERE øvelsesgruppe_id = '%s'", id);
-
-        return(DatabaseManager.sendQuery(sql2));
+        return(ferdig);
     }
 
     public static void main(String[] args){
