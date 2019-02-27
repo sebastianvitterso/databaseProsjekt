@@ -47,8 +47,8 @@ public class ConsoleManager {
         String beskrivelse = getInput("Beskrivelse:");
         printMapList(QueryManager.getApparat());
         String apparat_id = getInput("ApparatID:");
-        if (apparat_id == ""){
-            apparat_id = "null";
+        if (apparat_id.equals("")){
+            return QueryManager.addØvelseUtenApparat(navn, beskrivelse);
         }
         return QueryManager.addØvelse(navn, beskrivelse, apparat_id);
     }
@@ -71,7 +71,6 @@ public class ConsoleManager {
         for (Map<String, String> row : treningsøkter){
             id = row.get("treningsøkt_id");
         }
-        System.out.println(id);
         return QueryManager.addØvelseIØkt(id, øvelse, kilo, repetisjoner, sett, resultat);
     }
 
@@ -95,7 +94,7 @@ public class ConsoleManager {
         /*for (String prompt : args){
             ConsoleManager.getInput(prompt);
         }*/
-        System.out.println(makeØvelseIØkt());
+        System.out.println(makeØvelse());
 
 
     }
