@@ -6,7 +6,8 @@ public class Main {
         //TODO: Start hva som skal vises i console
         boolean finished = false;
         while (!finished) {
-            String input = ConsoleManager.getInput("Hei, hva ønsker du å gjøre?").toLowerCase();
+            String input = ConsoleManager.getInput("Hei, hva ønsker du å gjøre?\n" +
+                    "(skriv 'hjelp' for mulige kommandoer)").toLowerCase();
             switch (input){
                 case "slutt da": case "slutt":
                     finished = true;
@@ -24,10 +25,12 @@ public class Main {
                     ConsoleManager.makeØvelseIØkt();
                     break;
                 case "se valgmuligheter": case "hjelp":
-                    System.out.println("'slutt da'/'slutt' : Avslutter programmet \n" +
+                    System.out.println("Mulige kommandoer:\n" +
+                            "'slutt da'/'slutt' : Avslutter programmet \n" +
                             "'ny treningsøkt' : Legg inn ny treningsøkt\n" +
                             "'ny øvelse' : Legg inn ny øvelse\n" +
-                            "'øvelse i økt' : Legg til øvelse i treningsøkt");
+                            "'øvelse i økt' : Legg til øvelse i treningsøkt" +
+                            "\n_____________________________________________\n");
                     break;
             }
             /*
