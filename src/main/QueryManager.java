@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class QueryManager {
 
@@ -74,28 +76,10 @@ public class QueryManager {
     }
 
     public static List<Map<String, String>> getLikeØvelser (String øvelse_id_input){
-
-
-        String sql = String.format("SELECT øvelsesgruppe_id FROM øvelse_i_øvelsegruppe NATURAL JOIN øvelse WHERE øvelse_id = '%s' ", øvelse_id_input);
-        List<Map<String, String>> liste = DatabaseManager.sendQuery(sql);
-
-        List<Map<String, String>> ferdig = new ArrayList<>();
-
-        for (Map<String, String> map : liste){
-            String id = map.get("øvelsesgruppe_id");
-            String sql2 = String.format("SELECT * FROM øvelse_i_øvelsegruppe NATURAL JOIN øvelse WHERE øvelsesgruppe_id = '%s'", id);
-            //DatabaseManager.sendQuery(sql2);
-            List<Map<String, String>> tmp = DatabaseManager.sendQuery(sql2);
-
-            for (Map<String, String> element : tmp){
-                if (!(ferdig.contains(element))) {
-                    ferdig.add(element);
-                }
-            }
-
-        }
-
-        return(ferdig);
+        String sql = String.format("SELECT * from øvelse where øvelse_id in(\r\n" + 
+        		"SELECT distinct øvelse_id FROM øvelse_i_øvelsegruppe NATURAL JOIN øvelse WHERE øvelsesgruppe_id in (\r\n" + 
+        		"SELECT øvelsesgruppe_id FROM øvelse_i_øvelsegruppe NATURAL JOIN øvelse WHERE øvelse_id = %s))", øvelse_id_input);
+        return(DatabaseManager.sendQuery(sql));
     }
 
     public static void main(String[] args){
