@@ -34,8 +34,8 @@ public class QueryManager {
         return((DatabaseManager.sendUpdate(sql)) > 0);
     }
 
-    public static List<Map<String, String>> getTreningsøktID(String timestamp){
-        String sql = String.format("SELECT treningsøkt_id FROM treningsøkt WHERE timestamp = '%s'", timestamp);
+    public static List<Map<String, String>> getTreningsøktID(String timespunkt){
+        String sql = String.format("SELECT treningsøkt_id FROM treningsøkt WHERE timespunkt = '%s'", timespunkt);
         return(DatabaseManager.sendQuery(sql));
     }
 
@@ -60,7 +60,9 @@ public class QueryManager {
         String sql = String.format("SELECT øvelsegrupper_id FROM øvelse_i_øvelsegruppe NATURAL JOIN øvelse WHERE øvelse_id = '%s' ", øvelse_id_input);
         List<Map<String, String>> liste = DatabaseManager.sendQuery(sql);
 
+       Map<String, String> map = liste.get(0);
 
+       map.get("øvelsesgruppe_id");
 
     }
 
